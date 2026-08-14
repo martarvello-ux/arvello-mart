@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arvello Mart — Men's & Women's fashion, watches, shoes and accessories. Cash on Delivery available.">
+  <title>Arvello Mart | Style Meets Your Needs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <img src="assets/logo.png" alt="Arvello Mart Logo">
+        <span>ARVELLO <small>MART</small></span>
+      </a>
+      <nav>
+        <a href="#home" data-bn="হোম" data-en="Home">হোম</a>
+        <a href="#categories" data-bn="ক্যাটাগরি" data-en="Categories">ক্যাটাগরি</a>
+        <a href="#products" data-bn="পণ্যসমূহ" data-en="Products">পণ্যসমূহ</a>
+        <a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About">আমাদের সম্পর্কে</a>
+        <a href="#contact" data-bn="যোগাযোগ" data-en="Contact">যোগাযোগ</a>
+      </nav>
+      <button class="lang" id="langBtn">EN</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-bn="প্রিমিয়াম ফ্যাশন • নারী ও পুরুষ" data-en="PREMIUM FASHION • MEN & WOMEN">প্রিমিয়াম ফ্যাশন • নারী ও পুরুষ</p>
+          <h1 data-bn="আপনার স্টাইল, আমাদের পছন্দ।" data-en="Your Style, Our Choice.">আপনার স্টাইল, আমাদের পছন্দ।</h1>
+          <p class="hero-text" data-bn="ঘড়ি, জুতা, পোশাক ও ফ্যাশন অ্যাক্সেসরিজ—সবকিছু একসাথে, সহজ অর্ডার ও Cash on Delivery সুবিধায়।" data-en="Watches, shoes, clothing and fashion accessories — all in one place with easy ordering and Cash on Delivery.">
+            ঘড়ি, জুতা, পোশাক ও ফ্যাশন অ্যাক্সেসরিজ—সবকিছু একসাথে, সহজ অর্ডার ও Cash on Delivery সুবিধায়।
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#products" data-bn="পণ্য দেখুন" data-en="Shop Now">পণ্য দেখুন</a>
+            <a class="btn outline" href="https://wa.me/8801770441617?text=আসসালামু%20আলাইকুম,%20Arvello%20Mart-এর%20পণ্য%20সম্পর্কে%20জানতে%20চাই।" target="_blank" rel="noopener" data-bn="WhatsApp-এ অর্ডার" data-en="Order on WhatsApp">WhatsApp-এ অর্ডার</a>
+          </div>
+          <div class="trust">
+            <span>✓ <b data-bn="Cash on Delivery" data-en="Cash on Delivery">Cash on Delivery</b></span>
+            <span>✓ <b data-bn="নারী ও পুরুষের পণ্য" data-en="Men & Women">নারী ও পুরুষের পণ্য</b></span>
+            <span>✓ <b data-bn="সহজ অর্ডার" data-en="Easy Ordering">সহজ অর্ডার</b></span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="gold-ring"></div>
+          <img src="assets/logo.png" alt="Arvello Mart">
+          <p>STYLE MEETS YOUR NEEDS</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-bn="ক্যাটাগরি" data-en="CATEGORIES">ক্যাটাগরি</p>
+          <h2 data-bn="যা খুঁজছেন, এক জায়গায়" data-en="Everything You Need, In One Place">যা খুঁজছেন, এক জায়গায়</h2>
+        </div>
+        <div class="category-grid">
+          <button class="category" data-filter="Watches"><span>⌚</span><b data-bn="ঘড়ি" data-en="Watches">ঘড়ি</b><small data-bn="Men & Women" data-en="Men & Women">Men & Women</small></button>
+          <button class="category" data-filter="Shoes"><span>👟</span><b data-bn="জুতা" data-en="Shoes">জুতা</b><small data-bn="Style & Comfort" data-en="Style & Comfort">Style & Comfort</small></button>
+          <button class="category" data-filter="Clothing"><span>👕</span><b data-bn="পোশাক" data-en="Clothing">পোশাক</b><small data-bn="Men & Women" data-en="Men & Women">Men & Women</small></button>
+          <button class="category" data-filter="Accessories"><span>👜</span><b data-bn="অ্যাক্সেসরিজ" data-en="Accessories">অ্যাক্সেসরিজ</b><small data-bn="Fashion Essentials" data-en="Fashion Essentials">Fashion Essentials</small></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section products-section">
+      <div class="container">
+        <div class="section-head row">
+          <div>
+            <p class="eyebrow" data-bn="আমাদের পণ্য" data-en="OUR PRODUCTS">আমাদের পণ্য</p>
+            <h2 data-bn="Featured Collection" data-en="Featured Collection">Featured Collection</h2>
+          </div>
+          <div class="filters">
+            <button class="filter active" data-filter="All">All</button>
+            <button class="filter" data-filter="Watches">Watches</button>
+            <button class="filter" data-filter="Shoes">Shoes</button>
+            <button class="filter" data-filter="Clothing">Clothing</button>
+            <button class="filter" data-filter="Accessories">Accessories</button>
+          </div>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+        <p class="note" data-bn="ডেমো পণ্য দেখানো হয়েছে। আপনার আসল পণ্যের ছবি, নাম ও দাম পরে এখানে যোগ করা যাবে।" data-en="Demo products are shown. Your real product photos, names and prices can be added here later.">
+          ডেমো পণ্য দেখানো হয়েছে। আপনার আসল পণ্যের ছবি, নাম ও দাম পরে এখানে যোগ করা যাবে।
+        </p>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow" data-bn="ARVELLO MART" data-en="ARVELLO MART">ARVELLO MART</p>
+          <h2 data-bn="স্টাইল মিটস ইউর নিডস" data-en="Style Meets Your Needs">স্টাইল মিটস ইউর নিডস</h2>
+        </div>
+        <p data-bn="Arvello Mart-এ আমরা নারী ও পুরুষের জন্য ঘড়ি, জুতা, পোশাক ও ফ্যাশন অ্যাক্সেসরিজ একসাথে নিয়ে আসছি। আপনার পছন্দের পণ্য সহজে বেছে নিন এবং Cash on Delivery-তে অর্ডার করুন।"
+           data-en="At Arvello Mart, we bring together watches, shoes, clothing and fashion accessories for men and women. Choose your favorite products easily and order with Cash on Delivery.">
+          Arvello Mart-এ আমরা নারী ও পুরুষের জন্য ঘড়ি, জুতা, পোশাক ও ফ্যাশন অ্যাক্সেসরিজ একসাথে নিয়ে আসছি। আপনার পছন্দের পণ্য সহজে বেছে নিন এবং Cash on Delivery-তে অর্ডার করুন।
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container contact-card">
+        <div>
+          <p class="eyebrow" data-bn="যোগাযোগ" data-en="CONTACT">যোগাযোগ</p>
+          <h2 data-bn="আপনার পছন্দের পণ্য সম্পর্কে জানতে চান?" data-en="Looking for Something You Love?">আপনার পছন্দের পণ্য সম্পর্কে জানতে চান?</h2>
+          <p data-bn="অর্ডার বা পণ্যের বিস্তারিত জানতে আমাদের WhatsApp বা Facebook Page-এ মেসেজ করুন।" data-en="Message us on WhatsApp or our Facebook Page for orders and product details.">
+            অর্ডার বা পণ্যের বিস্তারিত জানতে আমাদের WhatsApp বা Facebook Page-এ মেসেজ করুন।
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn primary" href="https://wa.me/8801770441617" target="_blank" rel="noopener">WhatsApp: 01770441617</a>
+          <a class="btn outline" href="https://www.facebook.com/share/1BjcFEmnxR/" target="_blank" rel="noopener">Facebook Page</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Arvello Mart. All rights reserved.</span>
+      <span>Style Meets Your Needs</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
