@@ -20,7 +20,7 @@ const products = [
     price: "৳ 650"
   }
 
-    {
+  {
     cat: "Shoes",
     images: [
       "chunky-casual-sneaker.jpg"
