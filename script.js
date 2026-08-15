@@ -18,7 +18,7 @@ const products = [
     bn: "Premium POLO Striped Shirt",
     en: "Premium POLO Striped Shirt",
     price: "৳ 650"
-  }
+  },
 
   {
     cat: "Shoes",
@@ -37,15 +37,18 @@ let currentFilter = "All";
 function renderProducts() {
   const grid = document.getElementById("productGrid");
 
-  const list = currentFilter === "All"
-    ? products
-    : products.filter(p => p.cat === currentFilter);
+  if (!grid) return;
+
+  const list =
+    currentFilter === "All"
+      ? products
+      : products.filter(p => p.cat === currentFilter);
 
   grid.innerHTML = list.map(p => `
     <article class="product">
 
       <div class="product-image">
-        <div class="product-gallery">
+        <div class="product-gallery ${p.images.length === 1 ? "single" : ""}">
           ${p.images.map((img, index) => `
             <img
               src="${img}"
@@ -58,11 +61,18 @@ function renderProducts() {
       </div>
 
       <div class="product-body">
-        <div class="tag">${p.cat.toUpperCase()}</div>
 
-        <h3>${lang === "bn" ? p.bn : p.en}</h3>
+        <div class="tag">
+          ${p.cat.toUpperCase()}
+        </div>
 
-        <div class="price">${p.price}</div>
+        <h3>
+          ${lang === "bn" ? p.bn : p.en}
+        </h3>
+
+        <div class="price">
+          ${p.price}
+        </div>
 
         <a
           class="order"
@@ -78,15 +88,21 @@ function renderProducts() {
             p.price
           )}"
         >
-          ${lang === "bn" ? "WhatsApp-এ অর্ডার" : "Order on WhatsApp"}
+          ${lang === "bn"
+            ? "WhatsApp-এ অর্ডার"
+            : "Order on WhatsApp"}
         </a>
+
       </div>
 
     </article>
   `).join("");
 }
 
+
+/* বড় করে ছবি দেখানোর ব্যবস্থা */
 function openImage(src) {
+
   const viewer = document.createElement("div");
 
   viewer.className = "image-viewer";
@@ -99,47 +115,71 @@ function openImage(src) {
   document.body.appendChild(viewer);
 
   viewer.addEventListener("click", function(e) {
+
     if (
       e.target === viewer ||
       e.target.classList.contains("close-image")
     ) {
       viewer.remove();
     }
+
   });
 }
 
+
+/* Language */
 function setLanguage() {
+
   document.querySelectorAll("[data-bn]").forEach(el => {
-    el.textContent = lang === "bn"
-      ? el.dataset.bn
-      : el.dataset.en;
+
+    el.textContent =
+      lang === "bn"
+        ? el.dataset.bn
+        : el.dataset.en;
+
   });
 
-  document.getElementById("langBtn").textContent =
-    lang === "bn" ? "EN" : "বাংলা";
+  const langBtn = document.getElementById("langBtn");
+
+  if (langBtn) {
+    langBtn.textContent =
+      lang === "bn" ? "EN" : "বাংলা";
+  }
 
   renderProducts();
 }
 
-document.getElementById("langBtn").addEventListener("click", () => {
-  lang = lang === "bn" ? "en" : "bn";
-  setLanguage();
-});
 
+/* Language button */
+const langBtn = document.getElementById("langBtn");
+
+if (langBtn) {
+
+  langBtn.addEventListener("click", () => {
+
+    lang = lang === "bn" ? "en" : "bn";
+
+    setLanguage();
+
+  });
+
+}
+
+
+/* Category filter */
 document.querySelectorAll("[data-filter]").forEach(btn => {
+
   btn.addEventListener("click", () => {
 
     currentFilter = btn.dataset.filter;
 
-    document.querySelectorAll(".filter").forEach(x => {
-      x.classList.remove("active");
-    });
+    document
+      .querySelectorAll(".filter")
+      .forEach(x => x.classList.remove("active"));
 
-    const matching = [
-      ...document.querySelectorAll(".filter")
-    ].find(
-      x => x.dataset.filter === currentFilter
-    );
+    const matching =
+      [...document.querySelectorAll(".filter")]
+        .find(x => x.dataset.filter === currentFilter);
 
     if (matching) {
       matching.classList.add("active");
@@ -147,10 +187,19 @@ document.querySelectorAll("[data-filter]").forEach(btn => {
 
     renderProducts();
 
-    document
-      .getElementById("products")
-      .scrollIntoView({ behavior: "smooth" });
+    const productsSection =
+      document.getElementById("products");
+
+    if (productsSection) {
+      productsSection.scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
   });
+
 });
 
+
+/* প্রথমবার products দেখাবে */
 renderProducts();
