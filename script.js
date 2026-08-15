@@ -19,6 +19,16 @@ const products = [
     en: "Premium POLO Striped Shirt",
     price: "৳ 650"
   }
+
+    {
+    cat: "Shoes",
+    images: [
+      "chunky-casual-sneaker.jpg"
+    ],
+    bn: "Chunky Casual Sneaker",
+    en: "Chunky Casual Sneaker",
+    price: "৳ 1,790"
+  }
 ];
 
 let lang = "bn";
