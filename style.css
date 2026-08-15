@@ -24,3 +24,40 @@
   z-index: 1;
   pointer-events: none;
 }
+/* Product gallery fix */
+.product-image {
+  height: 260px;
+  padding: 0;
+  overflow: hidden;
+  background: #f5f2eb;
+}
+
+.product-gallery {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+.product-gallery .product-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Keep product information below the images */
+.product-body {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .product-image {
+    height: 240px;
+  }
+}
