@@ -1,4 +1,4 @@
-    const products = [
+const products = [
   {
     cat: "Watches",
     images: [
@@ -8,6 +8,16 @@
     bn: "POEDAGAR 930 | Silver Green",
     en: "POEDAGAR 930 | Silver Green",
     price: "৳ 950"
+  },
+
+  {
+    cat: "Clothing",
+    images: [
+      "premium-polo-striped-shirt.jpg"
+    ],
+    bn: "Premium POLO Striped Shirt",
+    en: "Premium POLO Striped Shirt",
+    price: "৳ 650"
   }
 ];
 
