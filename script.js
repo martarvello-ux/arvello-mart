@@ -1,4 +1,4 @@
-const products = [
+    const products = [
   {
     cat: "Watches",
     images: [
@@ -14,7 +14,7 @@ const products = [
 let lang = "bn";
 let currentFilter = "All";
 
-function renderProducts(){
+function renderProducts() {
   const grid = document.getElementById("productGrid");
 
   const list = currentFilter === "All"
@@ -31,6 +31,7 @@ function renderProducts(){
               src="${img}"
               alt="${p.en} - ${index + 1}"
               class="product-photo"
+              onclick="openImage('${img}')"
             >
           `).join("")}
         </div>
@@ -65,7 +66,29 @@ function renderProducts(){
   `).join("");
 }
 
-function setLanguage(){
+function openImage(src) {
+  const viewer = document.createElement("div");
+
+  viewer.className = "image-viewer";
+
+  viewer.innerHTML = `
+    <span class="close-image">&times;</span>
+    <img src="${src}" alt="Product Image">
+  `;
+
+  document.body.appendChild(viewer);
+
+  viewer.addEventListener("click", function(e) {
+    if (
+      e.target === viewer ||
+      e.target.classList.contains("close-image")
+    ) {
+      viewer.remove();
+    }
+  });
+}
+
+function setLanguage() {
   document.querySelectorAll("[data-bn]").forEach(el => {
     el.textContent = lang === "bn"
       ? el.dataset.bn
