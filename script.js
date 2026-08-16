@@ -1,69 +1,31 @@
-const products = [
-  {
-    cat: "Watches",
-    images: [
-      "poedagar-930-1.jpg",
-      "poedagar-930-2.jpg"
-    ],
-    bn: "POEDAGAR 930 | Silver Green",
-    en: "POEDAGAR 930 | Silver Green",
-    price: "৳ 950"
-  },
-
-  {
-    cat: "Clothing",
-    images: [
-      "premium-polo-striped-shirt.jpg"
-    ],
-    bn: "Premium POLO Striped Shirt",
-    en: "Premium POLO Striped Shirt",
-    price: "৳ 650"
-  },
-
-  {
-    cat: "Shoes",
-    images: [
-      "chunky-casual-sneaker.jpg"
-    ],
-    bn: "Chunky Casual Sneaker",
-    en: "Chunky Casual Sneaker",
-    price: "৳ 1,790"
-  }
-];
-
 let lang = "bn";
 let currentFilter = "All";
 
 function renderProducts() {
-  const grid = document.getElementById("productGrid");
+  const productsEl = document.getElementById("products");
 
-  if (!grid) return;
-
-  const list =
+  const filteredProducts =
     currentFilter === "All"
       ? products
       : products.filter(p => p.cat === currentFilter);
 
-  grid.innerHTML = list.map(p => `
-    <article class="product">
+  productsEl.innerHTML = filteredProducts.map((p, index) => `
+    <article class="product-card">
 
       <div class="product-image">
-        <div class="product-gallery ${p.images.length === 1 ? "single" : ""}">
-          ${p.images.map((img, index) => `
-            <img
-              src="${img}"
-              alt="${p.en} - ${index + 1}"
-              class="product-photo"
-              onclick="openImage('${img}')"
-            >
-          `).join("")}
-        </div>
+        ${p.images.map((img, imgIndex) => `
+          <img
+            src="${img}"
+            alt="${p.en}"
+            onclick="openImage('${img}')"
+          >
+        `).join("")}
       </div>
 
       <div class="product-body">
 
-        <div class="tag">
-          ${p.cat.toUpperCase()}
+        <div class="product-category">
+          ${p.cat}
         </div>
 
         <h3>
@@ -75,22 +37,16 @@ function renderProducts() {
         </div>
 
         <a
-          class="order"
+          class="order-btn"
           target="_blank"
           rel="noopener"
-          href="https://wa.me/8801770441617?text=${encodeURIComponent(
-            (lang === "bn"
-              ? "আমি এই পণ্যটি অর্ডার করতে চাই: "
-              : "I want to order this product: "
-            ) +
-            (lang === "bn" ? p.bn : p.en) +
-            " | " +
-            p.price
-          )}"
+          href="https://wa.me/8801707441177?text=${
+            lang === "bn"
+              ? "আমি এই পণ্যটি অর্ডার করতে চাই: " + p.bn + " - " + p.price
+              : "I want to order this product: " + p.en + " - " + p.price
+          }"
         >
-          ${lang === "bn"
-            ? "WhatsApp-এ অর্ডার"
-            : "Order on WhatsApp"}
+          WhatsApp-এ অর্ডার
         </a>
 
       </div>
@@ -100,9 +56,7 @@ function renderProducts() {
 }
 
 
-/* বড় করে ছবি দেখানোর ব্যবস্থা */
 function openImage(src) {
-
   const viewer = document.createElement("div");
 
   viewer.className = "image-viewer";
@@ -115,71 +69,52 @@ function openImage(src) {
   document.body.appendChild(viewer);
 
   viewer.addEventListener("click", function(e) {
-
     if (
       e.target === viewer ||
       e.target.classList.contains("close-image")
     ) {
       viewer.remove();
     }
-
   });
 }
 
 
-/* Language */
 function setLanguage() {
-
   document.querySelectorAll("[data-bn]").forEach(el => {
-
     el.textContent =
       lang === "bn"
         ? el.dataset.bn
         : el.dataset.en;
-
   });
 
-  const langBtn = document.getElementById("langBtn");
-
-  if (langBtn) {
-    langBtn.textContent =
-      lang === "bn" ? "EN" : "বাংলা";
-  }
+  document.getElementById("langBtn").textContent =
+    lang === "bn" ? "EN" : "বাংলা";
 
   renderProducts();
 }
 
 
-/* Language button */
-const langBtn = document.getElementById("langBtn");
-
-if (langBtn) {
-
-  langBtn.addEventListener("click", () => {
-
-    lang = lang === "bn" ? "en" : "bn";
-
-    setLanguage();
-
-  });
-
-}
+document.getElementById("langBtn").addEventListener("click", () => {
+  lang = lang === "bn" ? "en" : "bn";
+  setLanguage();
+});
 
 
-/* Category filter */
 document.querySelectorAll("[data-filter]").forEach(btn => {
 
   btn.addEventListener("click", () => {
 
     currentFilter = btn.dataset.filter;
 
-    document
-      .querySelectorAll(".filter")
-      .forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".filter").forEach(x => {
+      x.classList.remove("active");
+    });
 
-    const matching =
-      [...document.querySelectorAll(".filter")]
-        .find(x => x.dataset.filter === currentFilter);
+    const matching = [
+      ...document.querySelectorAll(".filter")
+    ].find(
+      x => x.dataset.filter === currentFilter
+    );
 
     if (matching) {
       matching.classList.add("active");
@@ -187,19 +122,15 @@ document.querySelectorAll("[data-filter]").forEach(btn => {
 
     renderProducts();
 
-    const productsSection =
-      document.getElementById("products");
-
-    if (productsSection) {
-      productsSection.scrollIntoView({
+    document
+      .getElementById("products")
+      .scrollIntoView({
         behavior: "smooth"
       });
-    }
 
   });
 
 });
 
 
-/* প্রথমবার products দেখাবে */
 renderProducts();
