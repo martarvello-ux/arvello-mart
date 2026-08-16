@@ -1,136 +1,290 @@
 let lang = "bn";
 let currentFilter = "All";
 
-function renderProducts() {
-  const productsEl = document.getElementById("products");
 
-  const filteredProducts =
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts() {
+
+  const grid = document.getElementById("productGrid");
+
+  if (!grid) return;
+
+  const list =
     currentFilter === "All"
       ? products
-      : products.filter(p => p.cat === currentFilter);
+      : products.filter(
+          p => p.cat === currentFilter
+        );
 
-  productsEl.innerHTML = filteredProducts.map((p, index) => `
-    <article class="product-card">
 
-      <div class="product-image">
-        ${p.images.map((img, imgIndex) => `
+  grid.innerHTML = list.map(p => `
+
+    <article class="product">
+
+      <div class="product-image ${p.images.length === 1 ? "single-image" : ""}">
+
+        ${p.images.map((img, index) => `
+
           <img
             src="${img}"
-            alt="${p.en}"
+            alt="${p.en} - ${index + 1}"
+            class="product-photo"
             onclick="openImage('${img}')"
           >
+
         `).join("")}
+
       </div>
+
 
       <div class="product-body">
 
-        <div class="product-category">
-          ${p.cat}
+        <div class="tag">
+          ${p.cat.toUpperCase()}
         </div>
+
 
         <h3>
           ${lang === "bn" ? p.bn : p.en}
         </h3>
 
+
         <div class="price">
           ${p.price}
         </div>
 
+
         <a
-          class="order-btn"
+          class="order"
           target="_blank"
           rel="noopener"
-          href="https://wa.me/8801770441617?text=${
-            lang === "bn"
-              ? "আমি এই পণ্যটি অর্ডার করতে চাই: " + p.bn + " - " + p.price
-              : "I want to order this product: " + p.en + " - " + p.price
-          }"
+          href="https://wa.me/8801770441617?text=${encodeURIComponent(
+
+            (lang === "bn"
+              ? "আমি এই পণ্যটি অর্ডার করতে চাই: "
+              : "I want to order this product: "
+            )
+
+            +
+
+            (lang === "bn" ? p.bn : p.en)
+
+            +
+
+            " | "
+
+            +
+
+            p.price
+
+          )}"
         >
-          WhatsApp-এ অর্ডার
+
+          ${lang === "bn"
+            ? "WhatsApp-এ অর্ডার"
+            : "Order on WhatsApp"}
+
         </a>
 
       </div>
 
     </article>
+
   `).join("");
 }
 
 
-function openImage(src) {
-  const viewer = document.createElement("div");
+/* =========================
+   IMAGE VIEWER
+========================= */
 
-  viewer.className = "image-viewer";
+function openImage(src) {
+
+  const viewer =
+    document.createElement("div");
+
+  viewer.className =
+    "image-viewer";
+
 
   viewer.innerHTML = `
-    <span class="close-image">&times;</span>
-    <img src="${src}" alt="Product Image">
+
+    <span class="close-image">
+      &times;
+    </span>
+
+    <img
+      src="${src}"
+      alt="Product Image"
+    >
+
   `;
+
 
   document.body.appendChild(viewer);
 
-  viewer.addEventListener("click", function(e) {
-    if (
-      e.target === viewer ||
-      e.target.classList.contains("close-image")
-    ) {
-      viewer.remove();
+
+  viewer.addEventListener(
+    "click",
+    function(e) {
+
+      if (
+        e.target === viewer ||
+        e.target.classList.contains(
+          "close-image"
+        )
+      ) {
+
+        viewer.remove();
+
+      }
+
     }
-  });
+  );
+
 }
 
+
+/* =========================
+   LANGUAGE
+========================= */
 
 function setLanguage() {
-  document.querySelectorAll("[data-bn]").forEach(el => {
-    el.textContent =
-      lang === "bn"
-        ? el.dataset.bn
-        : el.dataset.en;
-  });
 
-  document.getElementById("langBtn").textContent =
-    lang === "bn" ? "EN" : "বাংলা";
+  document
+    .querySelectorAll("[data-bn]")
+    .forEach(el => {
+
+      el.textContent =
+        lang === "bn"
+          ? el.dataset.bn
+          : el.dataset.en;
+
+    });
+
+
+  const langBtn =
+    document.getElementById("langBtn");
+
+
+  if (langBtn) {
+
+    langBtn.textContent =
+      lang === "bn"
+        ? "EN"
+        : "বাংলা";
+
+  }
+
 
   renderProducts();
+
 }
 
 
-document.getElementById("langBtn").addEventListener("click", () => {
-  lang = lang === "bn" ? "en" : "bn";
-  setLanguage();
-});
+/* =========================
+   LANGUAGE BUTTON
+========================= */
+
+const langBtn =
+  document.getElementById("langBtn");
 
 
-document.querySelectorAll("[data-filter]").forEach(btn => {
+if (langBtn) {
 
-  btn.addEventListener("click", () => {
+  langBtn.addEventListener(
+    "click",
+    () => {
 
-    currentFilter = btn.dataset.filter;
+      lang =
+        lang === "bn"
+          ? "en"
+          : "bn";
 
-    document.querySelectorAll(".filter").forEach(x => {
-      x.classList.remove("active");
-    });
+      setLanguage();
 
-    const matching = [
-      ...document.querySelectorAll(".filter")
-    ].find(
-      x => x.dataset.filter === currentFilter
-    );
-
-    if (matching) {
-      matching.classList.add("active");
     }
+  );
 
-    renderProducts();
+}
 
-    document
-      .getElementById("products")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
+
+/* =========================
+   CATEGORY FILTER
+========================= */
+
+document
+  .querySelectorAll("[data-filter]")
+  .forEach(btn => {
+
+    btn.addEventListener(
+      "click",
+      () => {
+
+        currentFilter =
+          btn.dataset.filter;
+
+
+        document
+          .querySelectorAll(".filter")
+          .forEach(x => {
+
+            x.classList.remove(
+              "active"
+            );
+
+          });
+
+
+        const matching =
+          [
+            ...document.querySelectorAll(
+              ".filter"
+            )
+          ].find(
+            x =>
+              x.dataset.filter ===
+              currentFilter
+          );
+
+
+        if (matching) {
+
+          matching.classList.add(
+            "active"
+          );
+
+        }
+
+
+        renderProducts();
+
+
+        const productsSection =
+          document.getElementById(
+            "products"
+          );
+
+
+        if (productsSection) {
+
+          productsSection.scrollIntoView({
+            behavior: "smooth"
+          });
+
+        }
+
+      }
+    );
 
   });
 
-});
 
+/* =========================
+   LOAD PRODUCTS
+========================= */
 
 renderProducts();
