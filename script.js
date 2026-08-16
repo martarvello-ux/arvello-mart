@@ -40,7 +40,7 @@ function renderProducts() {
           class="order-btn"
           target="_blank"
           rel="noopener"
-          href="https://wa.me/8801707441177?text=${
+          href="https://wa.me/8801770441617?text=${
             lang === "bn"
               ? "আমি এই পণ্যটি অর্ডার করতে চাই: " + p.bn + " - " + p.price
               : "I want to order this product: " + p.en + " - " + p.price
