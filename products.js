@@ -45,3 +45,18 @@ products.push({
   en: "Chunky Casual Sneaker",
   price: "৳ 1,790"
 });
+
+
+/* =========================
+   PRODUCT 4
+========================= */
+
+products.push({
+  cat: "Watches",
+  images: [
+    "poedagar-613.jpg"
+  ],
+  bn: "POEDAGAR 613",
+  en: "POEDAGAR 613",
+  price: "৳ 899"
+});
